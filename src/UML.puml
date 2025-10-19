@@ -1,0 +1,107 @@
+@startuml
+
+class Usuario {
+  - nombreCompleto: String
+  - cedula: String
+  - correoElectronico: String
+  - contrasenia: String
+  - tipo: String
+  --
+  + Usuario(nombreCompleto: String, cedula: String, correoElectronico: String, contrasenia: String, tipo: String)
+  + getNombreCompleto(): String
+  + setNombreCompleto(nombreCompleto: String): void
+  + getCedula(): String
+  + setCedula(cedula: String): void
+  + getCorreoElectronico(): String
+  + setCorreoElectronico(correoElectronico: String): void
+  + getContrasenia(): String
+  + setContrasenia(contrasenia: String): void
+  + getTipo(): String
+  + setTipo(tipo: String): void
+  + equals(usuarioComparar: Usuario): boolean
+  + toString(): String
+}
+
+class Cliente {
+  - usuario: Usuario
+  - sexo: String
+  - profesion: String
+  - direccion: String
+  - cuentas: List<Cuenta>
+  --
+  + Cliente(usuario: Usuario, sexo: String, profesion: String, direccion: String)
+  + getUsuario(): Usuario
+  + setUsuario(usuario: Usuario): void
+  + getSexo(): String
+  + setSexo(sexo: String): void
+  + getProfesion(): String
+  + setProfesion(profesion: String): void
+  + getDireccion(): String
+  + setDireccion(direccion: String): void
+  + getCuentas(): List<Cuenta>
+  + agregarCuenta(cuenta: Cuenta): void
+  + calcularSaldoConsolidado(): double
+  + equals(clienteComparar: Cliente): boolean
+  + toString(): String
+}
+
+class Cuenta {
+  - numeroCuenta: String
+  - saldo: double
+  - activa: boolean
+  - cliente: Cliente
+  - tipo: String
+  - porcentajeInteres: Double
+  - limiteCredito: Double
+  - tipoCredito: String
+  --
+  + Cuenta(numeroCuenta: String, saldo: double, cliente: Cliente, tipo: String)
+  + getNumeroCuenta(): String
+  + setNumeroCuenta(numeroCuenta: String): void
+  + getSaldo(): double
+  + setSaldo(saldo: double): void
+  + isActiva(): boolean
+  + setActiva(activa: boolean): void
+  + getCliente(): Cliente
+  + setCliente(cliente: Cliente): void
+  + getTipo(): String
+  + setTipo(tipo: String): void
+  + getPorcentajeInteres(): Double
+  + setPorcentajeInteres(porcentajeInteres: Double): void
+  + getLimiteCredito(): Double
+  + setLimiteCredito(limiteCredito: Double): void
+  + getTipoCredito(): String
+  + setTipoCredito(tipoCredito: String): void
+  + retirar(monto: double): boolean
+  + depositar(monto: double): boolean
+  + pagar(monto: double): boolean
+  + abonar(monto: double): boolean
+  + generarIntereses(): void
+  + equals(cuentaComparar: Cuenta): boolean
+  + toString(): String
+}
+
+class Main {
+  - usuarios: List<Usuario>
+  - clientes: List<Cliente>
+  - administrador: Usuario
+  --
+  + Main()
+  + main(args: String[]): void
+  + demostrarFuncionamiento(): void
+  - crearAdministrador(): void
+  - crearClientes(): void
+  - crearCuentas(): void
+  - demostrarTransacciones(): void
+  - demostrarEquals(): void
+  - demostrarReportes(): void
+}
+
+' Relaciones
+Usuario "1" -- "1" Cliente
+Cliente "1" -- "*" Cuenta
+Main --> Usuario
+Main --> Cliente
+Main --> Cuenta
+
+@enduml
