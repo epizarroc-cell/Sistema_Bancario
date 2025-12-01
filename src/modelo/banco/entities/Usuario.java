@@ -1,11 +1,12 @@
-public class Usuario {
-    //Atributos
 
+package modelo.banco.entities;
+public class Usuario {
     private String nombreCompleto;
     private String cedula;
     private String correoElectronico;
     private String contrasenia;
-    private String tipo; //Admin o cliente
+    private String tipo; // "ADMINISTRADOR" o "CLIENTE"
+
     //Metodo
     //Constructor
     public Usuario(String nombreCompletoObjeto, String cedulaObjeto, String correoElectronicoObjeto,
@@ -40,7 +41,7 @@ public class Usuario {
         cedula = nuevaCedula;
     }
     public void setCorreoElectronico(String nuevoCorreoElectronico){
-        contrasenia = nuevoCorreoElectronico;
+        correoElectronico = nuevoCorreoElectronico;  // Cambiado de contrasenia a correoElectronico
     }
     public void setTipo(String nuevoTipo){
         tipo = nuevoTipo;

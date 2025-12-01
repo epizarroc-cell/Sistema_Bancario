@@ -1,17 +1,14 @@
+package modelo.banco.entities;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente {
-
-    //Atrinutos
     private Usuario usuario;
     private String sexo;
     private String profesion;
     private String direccion;
     private List<Cuenta> cuentas;
-
-    //Metodo
-    //COnstructor
 
     public Cliente(Usuario usuarioObjeto, String sexoObjeto, String profesionObjeto, String direccionObjeto) {
         usuario = usuarioObjeto;
@@ -21,47 +18,44 @@ public class Cliente {
         cuentas = new ArrayList<>();
     }
 
-    //Getters
-
     public Usuario getUsuario() {
         return usuario;
     }
 
-    public List<Cuenta> getCuentas() {
-        return cuentas;
-    }
-
-    public String getProfesion() {
-        return profesion;
-    }
-
-    public String getDireccion() {
-        return direccion;
+    public void setUsuario(Usuario nuevoUsuario) {
+        usuario = nuevoUsuario;
     }
 
     public String getSexo() {
         return sexo;
     }
 
-    //Setter
-    public void setUsuario(Usuario nuevoUsuario) {
-        usuario = nuevoUsuario;
+    public void setSexo(String nuevoSexo) {
+        sexo = nuevoSexo;
     }
 
-    public void agregarCuenta(Cuenta cuenta) {
-        cuentas.add(cuenta);
+    public String getProfesion() {
+        return profesion;
     }
 
     public void setProfesion(String nuevaProfesion) {
         profesion = nuevaProfesion;
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
     public void setDireccion(String nuevaDireccion) {
         direccion = nuevaDireccion;
     }
 
-    public void setSexo(String nuevoSexo) {
-        sexo = nuevoSexo;
+    public List<Cuenta> getCuentas() {
+        return cuentas;
+    }
+
+    public void agregarCuenta(Cuenta cuenta) {
+        cuentas.add(cuenta);
     }
 
     public double calcularSaldoConsolidado() {
@@ -72,21 +66,20 @@ public class Cliente {
         return saldoTotal;
     }
 
-    //Metodo equals
-
     public boolean equals(Cliente clienteComparar) {
         return usuario.equals(clienteComparar.getUsuario());
     }
 
-    //Metodo toString
+    @Override
     public String toString() {
-        return "Cliente\n" +
-                "\nUsuario: " + usuario +
-                "\nSexo: " + sexo +
-                "\nProfecion: " + profesion +
-                "\nDIreccion: " + direccion +
-                "\nNUmero de cuenta" + cuentas.size() + ".\n";
+        return "Cliente{\n" +
+                "  usuario=" + usuario.getNombreCompleto() + "\n" +
+                "  cedula=" + usuario.getCedula() + "\n" +
+                "  sexo='" + sexo + "'\n" +
+                "  profesion='" + profesion + "'\n" +
+                "  direccion='" + direccion + "'\n" +
+                "  numeroCuentas=" + cuentas.size() + "\n" +
+                "  saldoConsolidado=" + calcularSaldoConsolidado() + "\n" +
+                "}";
     }
-
-
 }
