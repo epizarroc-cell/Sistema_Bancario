@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class ConsoleHelper {
-    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    public static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public static String leerString(String mensaje) {
         try {

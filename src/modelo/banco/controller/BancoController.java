@@ -1,7 +1,5 @@
 package modelo.banco.controller;
 
-
-
 import modelo.banco.dao.*;
 import modelo.banco.view.MenuPrincipal;
 import modelo.banco.view.ClienteView;

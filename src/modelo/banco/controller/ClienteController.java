@@ -8,6 +8,8 @@ import modelo.banco.entities.Usuario;
 import modelo.banco.view.ClienteView;
 import java.util.List;
 
+import static modelo.banco.util.ConsoleHelper.reader;
+
 public class ClienteController {
     private ClienteDAO clienteDAO;
     private UsuarioDAO usuarioDAO;
@@ -90,6 +92,51 @@ public class ClienteController {
             view.mostrarCliente(cliente);
         } else {
             view.mostrarError("Cliente no encontrado");
+        }
+    }
+    public void actualizarCliente() {
+        try {
+            System.out.println("\n=== ACTUALIZAR CLIENTE ===");
+
+            String cedula = view.solicitarCedula();
+            Cliente cliente = clienteDAO.buscarPorCedula(cedula);
+
+            if (cliente == null) {
+                view.mostrarError("Cliente no encontrado");
+                return;
+            }
+
+            System.out.println("\nDatos actuales del cliente:");
+            view.mostrarCliente(cliente);
+
+            System.out.println("\nIngrese los nuevos datos (deje en blanco para mantener el valor actual):");
+
+            System.out.print("Nuevo sexo [" + cliente.getSexo() + "]: ");
+            String nuevoSexo = reader.readLine();
+            if (!nuevoSexo.trim().isEmpty()) {
+                cliente.setSexo(nuevoSexo);
+            }
+
+            System.out.print("Nueva profesión [" + cliente.getProfesion() + "]: ");
+            String nuevaProfesion = reader.readLine();
+            if (!nuevaProfesion.trim().isEmpty()) {
+                cliente.setProfesion(nuevaProfesion);
+            }
+
+            System.out.print("Nueva dirección [" + cliente.getDireccion() + "]: ");
+            String nuevaDireccion = reader.readLine();
+            if (!nuevaDireccion.trim().isEmpty()) {
+                cliente.setDireccion(nuevaDireccion);
+            }
+
+            if (clienteDAO.actualizar(cliente)) {
+                view.mostrarExito("Cliente actualizado exitosamente");
+            } else {
+                view.mostrarError("Error al actualizar cliente");
+            }
+
+        } catch (Exception e) {
+            view.mostrarError("Error: " + e.getMessage());
         }
     }
 

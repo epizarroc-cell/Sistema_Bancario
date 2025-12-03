@@ -1,6 +1,5 @@
 package modelo.banco.view;
 
-
 import modelo.banco.entities.Cuenta;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -113,5 +112,14 @@ public class CuentaView {
         }
 
         System.out.println("└──────────────┴────────────┴────────────┴─────────────┘");
+    }
+
+    // MÉTODOS NUEVOS AGREGADOS
+    public void mostrarError(String mensaje) {
+        System.out.println("✗ Error: " + mensaje);
+    }
+
+    public void mostrarExito(String mensaje) {
+        System.out.println("✓ " + mensaje);
     }
 }
